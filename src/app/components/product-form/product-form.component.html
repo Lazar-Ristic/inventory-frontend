@@ -1,0 +1,26 @@
+<h2>Add Product</h2>
+
+<form (ngSubmit)="submit()" #productForm="ngForm">
+  <label>
+    Name:
+    <input name="name" [(ngModel)]="product.name" required />
+  </label>
+
+  <label>
+    Quantity:
+    <input type="number" name="quantity" [(ngModel)]="product.quantity" required />
+  </label>
+
+  <label>
+    Price:
+    <input type="number" step="0.01" name="price" [(ngModel)]="product.price" required />
+  </label>
+
+  <label>
+    Category ID:
+    <input type="number" name="categoryId" [(ngModel)]="product.categoryId" required />
+  </label>
+
+  <button type="submit">Save</button>
+</form>
+
