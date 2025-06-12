@@ -1,9 +1,20 @@
-<div>
+<div class="list-container">
   <h2>Products</h2>
-  <ul>
-    <li *ngFor="let product of products">
-      {{ product.name }} ({{ product.quantity }}) - ${{ product.price }}
+
+  <div *ngIf="products.length === 0" class="empty-state">
+    No products found.
+  </div>
+
+  <div class="product-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+        <p><strong>Price:</strong> ${{ product.price.toFixed(2) }}</p>
+        <p><strong>Category ID:</strong> {{ product.categoryId }}</p>
+      </div>
+
       <button (click)="deleteProduct(product.id)">Delete</button>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

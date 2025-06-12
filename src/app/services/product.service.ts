@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Category } from './category';
 
 export interface Product {
   id: number;
@@ -35,4 +36,9 @@ export class ProductService {
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:5107/api/categories');
+  }
+
 }

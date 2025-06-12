@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../../services/product.service';
+import { Category } from '../../services/category';
 
 @Component({
   selector: 'app-product-form',
@@ -10,7 +11,7 @@ import { ProductService, Product } from '../../services/product.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   product: Product = {
     id: 0,
     name: '',
@@ -18,8 +19,15 @@ export class ProductFormComponent {
     price: 0,
     categoryId: 0
   };
+  categories: Category[] = [];
 
   constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.productService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
+  }
 
   submit() {
   const existingCategoryId = this.product.categoryId;
